@@ -1,0 +1,92 @@
+[
+  {
+    "id": "task_1708450000001",
+    "title": "Data Structures Study",
+    "duration": 120,
+    "tag": "Study",
+    "date": "2026-02-21",
+    "createdAt": "2026-02-20T10:00:00.000Z",
+    "updatedAt": "2026-02-20T10:00:00.000Z"
+  },
+  {
+    "id": "task_1708450000002",
+    "title": "Group Meeting Meeting",
+    "duration": 45,
+    "tag": "Project",
+    "date": "2026-02-22",
+    "createdAt": "2026-02-20T11:30:00.000Z",
+    "updatedAt": "2026-02-20T11:30:00.000Z"
+  },
+  {
+    "id": "task_1708450000003",
+    "title": "Gym Session",
+    "duration": 60,
+    "tag": "Personal",
+    "date": "2026-02-21",
+    "createdAt": "2026-02-19T08:00:00.000Z",
+    "updatedAt": "2026-02-19T09:00:00.000Z"
+  },
+  {
+    "id": "task_1708450000004",
+    "title": "Library Research",
+    "duration": 180,
+    "tag": "Study",
+    "date": "2026-02-25",
+    "createdAt": "2026-02-20T14:20:00.000Z",
+    "updatedAt": "2026-02-20T14:20:00.000Z"
+  },
+  {
+    "id": "task_1708450000005",
+    "title": "Web Dev Lab",
+    "duration": 90,
+    "tag": "School",
+    "date": "2026-02-23",
+    "createdAt": "2026-02-20T15:00:00.000Z",
+    "updatedAt": "2026-02-20T15:00:00.000Z"
+  },
+  {
+    "id": "task_1708450000006",
+    "title": "Buy Groceries",
+    "duration": 30,
+    "tag": "Errand",
+    "date": "2026-02-21",
+    "createdAt": "2026-02-20T16:10:00.000Z",
+    "updatedAt": "2026-02-20T16:10:00.000Z"
+  },
+  {
+    "id": "task_1708450000007",
+    "title": "Final Project Review",
+    "duration": 240,
+    "tag": "Project",
+    "date": "2026-03-01",
+    "createdAt": "2026-02-18T12:00:00.000Z",
+    "updatedAt": "2026-02-20T17:00:00.000Z"
+  },
+  {
+    "id": "task_1708450000008",
+    "title": "Coffee with Mentor",
+    "duration": 40,
+    "tag": "Social",
+    "date": "2026-02-24",
+    "createdAt": "2026-02-20T18:00:00.000Z",
+    "updatedAt": "2026-02-20T18:00:00.000Z"
+  },
+  {
+    "id": "task_1708450000009",
+    "title": "Math Homework Homework",
+    "duration": 75,
+    "tag": "Study",
+    "date": "2026-02-22",
+    "createdAt": "2026-02-20T19:00:00.000Z",
+    "updatedAt": "2026-02-20T19:00:00.000Z"
+  },
+  {
+    "id": "task_1708450000010",
+    "title": "Sleep",
+    "duration": 480,
+    "tag": "Health",
+    "date": "2026-02-21",
+    "createdAt": "2026-02-20T22:00:00.000Z",
+    "updatedAt": "2026-02-20T22:00:00.000Z"
+  }
+]
