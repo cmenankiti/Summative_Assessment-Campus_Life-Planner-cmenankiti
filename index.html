@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Life Planner</title>
+<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+<header class="header">
+  <div class="nav-buttons">
+    <button id="homeBtn">Home</button>
+    <button id="searchBtn">Search</button>
+    <button id="myTasksBtn">My Tasks</button>
+    <button id="aboutBtn">About</button> </div>
+  <h1>Campus Life Planner</h1>
+  <p class="subtitle">Organize your school hustle</p>
+  <svg class="africa-map" viewBox="0 0 486.661 486.661" fill="#f4f9f4">
+    <path d="M410.401,172.9L345.492,20.188h-80.769L255.143,0H153.298C89.004,0,36.699,52.306,36.699,116.598s52.306,116.598,116.599,116.598h27.985v172.018c0,33.596,19.133,63.606,49.933,78.32l6.544,3.127l112.526-55.069l43.312-147.464L449.963,234v-61.1H410.401z"/>
+  </svg>
+</header>
+
+<main id="main">
+
+  <section id="formSection" class="panel">
+    <h2>Add New Task</h2>
+    <form id="taskForm">
+      <input id="title" placeholder="Task title (e.g. Study for test)" required>
+      <input id="duration" placeholder="Duration in minutes" required>
+      <input id="tag" placeholder="Tag (Study, Social, Project)" required>
+      <input id="date" type="date" required>
+      <button type="submit">Add Task</button>
+      <p id="status" class="status" role="status"></p>
+    </form>
+  </section>
+
+  <section id="statsPanel" class="anotherPanel">
+    <h2>Dashboard</h2>
+    <div id="stats"></div>
+    <div id="cards"></div>
+  </section>
+
+  <section id="tasksSection" class="anotherPanel">
+    <h2>My Tasks</h2>
+    <div id="tasksList"></div>
+  </section>
+
+  <section id="searchSection" class="panel" style="display:none;">
+    <h2>Search Tasks</h2>
+    <input id="search" placeholder="Try: study|meeting">
+    <div id="searchResults"></div>
+  </section>
+
+  <section id="aboutSection" class="panel" style="display:none;">
+    <h2>About Planner</h2>
+    <p><strong>Purpose:</strong> A vanilla JS application designed to help students organize their academic hustle, track study durations, and manage campus events effectively.</p>
+    <p><strong>Contact:</strong> Menankiti Chigozirim King-David</p>
+    <p>Email: <a href="c.menankiti@alustudent.com">c.menankiti@alustudent.com</a></p>
+    <p>GitHub: <a href="https://github.com/yourusername" target="_blank">cmenankiti</a></p>
+  </section>
+
+  <section id="settingsSection" class="anotherPanel" style="grid-column: 1 / -1;">
+    <h2>Settings & Data</h2>
+    <div style="display: flex; gap: 10px;">
+      <button id="exportBtn">Export JSON</button>
+      <input type="file" id="importFile" style="display:none" accept=".json">
+      <button id="importBtn" onclick="document.getElementById('importFile').click()">Import JSON</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Made by Menankiti Chigozirim King-David.</p>
+  <p>All rights reserved.</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
