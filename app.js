@@ -9,7 +9,7 @@ let tasks = load();
 
 const form = document.getElementById("taskForm");
 const status = document.getElementById("status");
-const searchInput = document.getElementById("search"); // Matches your index.html ID
+const searchInput = document.getElementById("search");
 const tasksList = document.getElementById("tasksList");
 const liveStatus = document.getElementById("liveStatus");
 
@@ -18,7 +18,7 @@ function announce(msg) {
   if (liveStatus) liveStatus.textContent = msg;
 }
 
-// SECTION SWITCHING (Swaps the 3rd column content)
+// SECTION SWITCHING
 function showSubSection(id) {
   const sections = ["tasksSection", "searchSection", "aboutSection"];
   sections.forEach(secId => {
@@ -38,7 +38,7 @@ function update() {
   renderTasksList();
 }
 
-// RENDER "MY TASKS" SECTION
+// RENDER "MY TASKS" SECTION WITH DUE STATUS
 function renderTasksList() {
   if (!tasksList) return;
   tasksList.innerHTML = "";
@@ -49,7 +49,7 @@ function renderTasksList() {
   }
 
   tasks.forEach(task => {
-    // Calculate Time Remaining for the display
+    
     const today = new Date();
     today.setHours(0, 0, 0, 0); 
     const dueDate = new Date(task.date);
@@ -73,12 +73,69 @@ function renderTasksList() {
       <p style="margin: 5px 0; font-weight: bold; font-size: 0.9em; color: ${diffInDays < 0 ? '#d9534f' : '#28a745'}">
         ${dueStatus}
       </p>
-
+      
       <button class="del" data-id="${task.id}" style="background: #d9534f; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
         Delete
       </button>
     `;
     tasksList.appendChild(div);
+  });
+}
+
+// ADD TASK EVENT WITH ADVANCED REGEX VALIDATION
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const title = form.title.value.trim();
+  const now = new Date().toISOString();
+
+  // 1. Basic Title Validation
+  if (!validate("title", title)) {
+    status.style.color = "#d9534f";
+    return (status.textContent = "Invalid title format.");
+  }
+
+  // 2. Advanced Back-reference Check (NEW)
+  if (!validate("repeatWords", title)) {
+    status.style.color = "#d9534f";
+    return (status.textContent = "Error: Repeated words detected in title.");
+  }
+
+  // 3. Duration Validation
+  if (!validate("duration", form.duration.value)) {
+    status.style.color = "#d9534f";
+    return (status.textContent = "Invalid duration (numbers only).");
+  }
+
+  tasks.push({
+    id: "task_" + Date.now(),
+    title: title,
+    duration: parseInt(form.duration.value),
+    tag: form.tag.value,
+    date: form.date.value,
+    createdAt: now,
+    updatedAt: now
+  });
+
+  form.reset();
+  status.style.color = "#28a745";
+  status.textContent = "Task added successfully!";
+  announce("Task " + title + " added.");
+  update();
+});
+
+// SEARCH BY TITLE EVENT WITH LIVE REGEX FEEDBACK (NEW)
+if (searchInput) {
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value;
+
+    // Provide visual feedback if the user enters repeated words in search
+    if (!validate("repeatWords", query) && query.length > 0) {
+      searchInput.style.border = "2px solid #d9534f"; 
+    } else {
+      searchInput.style.border = "1px solid #ddd";
+    }
+
+    renderSearchResults(tasks, query, document.getElementById("searchResults"));
   });
 }
 
@@ -133,38 +190,7 @@ if (importFile) {
   importFile.addEventListener("change", importTasks);
 }
 
-// ADD TASK EVENT
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  const title = form.title.value.trim();
-  const now = new Date().toISOString();
 
-  if (!validate("title", title)) return (status.textContent = "Invalid title");
-  if (!validate("duration", form.duration.value)) return (status.textContent = "Invalid duration");
-
-  tasks.push({
-    id: "task_" + Date.now(),
-    title,
-    duration: Number(form.duration.value),
-    tag: form.tag.value,
-    date: form.date.value,
-    createdAt: now,
-    updatedAt: now
-  });
-
-  form.reset();
-  status.textContent = "Task added successfully!";
-  announce("Task " + title + " added.");
-  update();
-});
-
-// --- NEW: SEARCH BY TITLE EVENT ---
-if (searchInput) {
-  searchInput.addEventListener("input", () => {
-    // Uses your search.js renderSearchResults to filter and highlight
-    renderSearchResults(tasks, searchInput.value, document.getElementById("searchResults"));
-  });
-}
 
 // DELETE TASK EVENT
 document.addEventListener("click", e => {
@@ -190,5 +216,5 @@ if (exportBtn) {
   exportBtn.addEventListener("click", exportTasks);
 }
 
-// INITIAL RUN
+// INITIAL RENDER
 update();
